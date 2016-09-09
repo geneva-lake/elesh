@@ -1,0 +1,47 @@
+<div class="container">
+<div class="row">
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>
+<a ng-click="sort_by('device-id')" style="color: #555555;" href="">Device Id&nbsp;
+<span ng-show="orderId===1" class="fa fa-caret-down" ng-click="orderId = (-1)*orderId"></span>
+<span ng-show="orderId===-1" class="fa fa-caret-up" ng-click="orderId = (-1)*orderId"></span>
+</a>
+<th>
+<a ng-click="sort_by('install-date')" style="color: #555555;" href="">Install Date&nbsp;
+<span  class="fa fa-caret-down" ng-click="orderDate = (-1)*orderDate"></span>
+</a></th>
+</tr>
+</thead>
+
+<tbody>
+<tr ng-repeat="device in ScopeDevices">
+<th>{{device.DeviceId}}</th>
+<th>{{device.InstallDate}} </th>
+</tr>
+</tbody>
+
+    <tfoot>
+        <ul ng-if="total" class="pagination bottom">
+            <li ng-class="{disabled:currentPage === 1}">
+                <a ng-click="setPage(1)">First</a>
+            </li>
+            <li ng-class="{disabled:currentPage === 1}">
+                <a ng-click="setPage(currentPage - 1)">Previous</a>
+            </li>
+            <li ng-repeat="page in pages" ng-class="{active:currentPage === page}">
+                <a ng-click="setPage(page)">{{page}}</a>
+            </li>               
+            <li ng-class="{disabled:currentPage === totalPages}">
+                <a ng-click="setPage(currentPage + 1)">Next</a>
+            </li>
+            <li ng-class="{disabled:currentPage === totalPages}">
+                <a ng-click="setPage(totalPages)">Last</a>
+            </li>
+        </ul>
+	</tfoot>
+
+</table>
+</div>
+</div>

@@ -1,0 +1,20 @@
+<div>
+<div class="container">
+		<h1>App Information</h1>
+		<div class="row">
+			<div class="col-md-2">
+				<div class="packt">
+					<ul class="nav nav-pills nav-stacked" ng-init="tab=1">
+					<li ng-click="tab=1" ng-class="{'active' : tab==1}"><a ui-sref="admin.devices"> <span class="glyphicon glyphicon-sd-video"> </span> Devices</a></li>
+					<li ng-click="tab=2" ng-class="{'active' : tab==2}"><a ui-sref="admin.site"> <span class="glyphicon glyphicon-book"> </span> Site</a></li>
+					<li ng-click="tab=3" ng-class="{'active' : tab==3}"><a ui-sref="admin.graph"> <span class="glyphicon glyphicon-book"> </span> Graph</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-8">
+ 				<div ui-view></div>
+			</div>
+
+		</div>
+</div>
+</div>
