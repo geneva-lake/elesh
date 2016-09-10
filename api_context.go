@@ -36,7 +36,6 @@ func (c *ApiContext) TestRequest(rw web.ResponseWriter, req *web.Request) {
 
 func (c *ApiContext) MiddleTest(rw web.ResponseWriter, req *web.Request) {
 	rw.Header().Add("Token", c.token)
-	//fmt.Fprint(rw, "Test")
 }
 
 //Checking api key in request

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	_ "log"
 	"net/http"
 	"net/http/httptest"
 	"runtime"
@@ -62,7 +61,6 @@ func TestSimpleRequest(t *testing.T) {
 }
 
 func TestCheckAuth(t *testing.T) {
-
 	apiRouter := web.New(ApiContext{})
 	apiRouter.Middleware((*ApiContext).CheckAuth)
 	apiRouter.Get("/", (*ApiContext).TestRequest)
@@ -82,7 +80,6 @@ func TestCheckAuth(t *testing.T) {
 }
 
 func TestCheckSession(t *testing.T) {
-
 	var mc MongoConnection
 	mc.InitTest()
 	mc.DeleteSessions()
@@ -116,7 +113,6 @@ func TestCheckSession(t *testing.T) {
 }
 
 func TestCheckTrial(t *testing.T) {
-
 	var mc MongoConnection
 	mc.InitTest()
 	mc.DeleteDevices()
