@@ -43,7 +43,7 @@ func (c *LoginContext) Login(w web.ResponseWriter, r *web.Request) {
 		InternalError(&w, "database error")
 		return
 	}
-	if psw.Password == password && psw.Login == login {
+	if psw.Password == c.GenerateHash(password) && psw.Login == login {
 		cookie := &http.Cookie{
 			Name:    "session",
 			Value:   "1234",
@@ -58,6 +58,14 @@ func (c *LoginContext) Login(w web.ResponseWriter, r *web.Request) {
 		w.WriteHeader(http.StatusUnauthorized)
 		authenticated = false
 	}
+}
+
+func (c *LoginContext) GenerateHash(password string) string {
+	var hash string
+	sha := sha256.New()
+	sha.Write([]byte(password))
+	hash = base64.URLEncoding.EncodeToString(sha.Sum(nil))
+	return hash
 }
 
 func FileHandlerFromDir(file string, w web.ResponseWriter, r *web.Request) {
