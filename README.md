@@ -1,4 +1,5 @@
+<h3>Description:</h3>
 elesh is a simple backend for mobile applications inspirated by parse.com. It is based on a gocraft/web framework. elesh has api and web parts. In api part (api_context struct) application counts requests, provides rest api for checking trial time, checking sessions and storing some text information. In web part (web_context struct) elesh through web interface provide information about installed devices, stored text information ("site") and api request count by day represented as graph. Web interface is SPA on a base angularjs. elesh uses mongodb for storing devices information and influxdb for api requests statistics.
 
-Setup:
+<h3>Setup:</h3>
 Mongodb and influxdb are necessary. In these databases one need to create user "backend" with password "backend". In mongo you should create database "backend" and create in it collection "password" with login "backend" and hashed password "backend". Or of course you can use another words, in this case don't forget change the code. In influxdb you should create "device_connected" database. Also you should create certificate and key for TLS connection. 
