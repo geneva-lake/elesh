@@ -1,5 +1,5 @@
 myApp.controller('SiteCtr', ['$scope', '$http', '$location', function ($scope, $http, $location) {
-			$http.get("http://localhost:3000/admin/site")
+			$http.get("https://localhost:3000/admin/site")
 			.success(
 				function (data) {
 				$scope.siteUrl = data.url;
@@ -13,7 +13,7 @@ myApp.controller('SiteCtr', ['$scope', '$http', '$location', function ($scope, $
 			});
 			$scope.updateSiteUrl = function (data) {
 				$scope.siteDate = new Date();
-				$http.post("http://localhost:3000/admin/site", {
+				$http.post("https://localhost:3000/admin/site", {
 					url : data,
 					date : $scope.siteDate
 				});

@@ -98,5 +98,5 @@ func bootstrap() {
 
 	assetsRouter := rootRouter.Subrouter(AssetsContext{}, "/assets")
 	assetsRouter.Get("/:*", (*AssetsContext).Assets)
-	http.ListenAndServe("localhost:3000", rootRouter)
+	http.ListenAndServeTLS("localhost:3000", "server.pem", "server.key", rootRouter)
 }

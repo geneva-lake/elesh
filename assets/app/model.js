@@ -1,7 +1,7 @@
 myApp.service('DevicesModel', ["$http", function ($http) {
 			var service = this;
 			service.all = function (skip, limit, filter, order) {
-				return $http.get("http://localhost:3000/admin/devices/" + skip + "/" + limit + "/" + filter + "/" + order)
+				return $http.get("https://localhost:3000/admin/devices/" + skip + "/" + limit + "/" + filter + "/" + order)
 				.success(function (data) {
 					return data;
 				}).
@@ -19,7 +19,7 @@ myApp.service('GraphModel', ["$http", function ($http) {
 				var postDate = {};
 				postDate.begin = begin;
 				postDate.end = end;
-				return $http.post("http://localhost:3000/admin/use-count", postDate)
+				return $http.post("https://localhost:3000/admin/use-count", postDate)
 				.success(function (data) {
 					return data;
 				}).

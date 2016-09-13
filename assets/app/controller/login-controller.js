@@ -5,7 +5,7 @@ myApp.controller('LoginCtr', ['$scope', '$location', '$http', function ($scope, 
 					login : $scope.formLogin,
 					password : $scope.formPassword
 				};
-				$http.post('http://localhost:3000/web', postData).
+				$http.post('https://localhost:3000/web', postData).
 				success(function (data) {
 					$location.path('/admin');
 				}).error(function (data, header, config) {
