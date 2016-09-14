@@ -8,7 +8,6 @@ import (
 )
 
 //InfluxConnection for registering api requests
-
 type InfluxConnection struct {
 	InfluxClient client.Client
 	Point        client.BatchPoints

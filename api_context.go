@@ -22,8 +22,10 @@ type PostDevice struct {
 	DeviceId string `json:"device-id"`
 }
 
-func InjectMiddlewareApi(mc *MongoConnection, ic *InfluxConnection) func(*ApiContext, web.ResponseWriter, *web.Request, web.NextMiddlewareFunc) {
-	return func(ctx *ApiContext, w web.ResponseWriter, r *web.Request, next web.NextMiddlewareFunc) {
+func InjectMiddlewareApi(mc *MongoConnection, ic *InfluxConnection) func(*ApiContext,
+	web.ResponseWriter, *web.Request, web.NextMiddlewareFunc) {
+	return func(ctx *ApiContext, w web.ResponseWriter, r *web.Request,
+		next web.NextMiddlewareFunc) {
 		ctx.mc = mc
 		ctx.ic = ic
 		next(w, r)
@@ -39,7 +41,8 @@ func (c *ApiContext) MiddleTest(rw web.ResponseWriter, req *web.Request) {
 }
 
 //Checking api key in request
-func (c *ApiContext) CheckAuth(w web.ResponseWriter, r *web.Request, next web.NextMiddlewareFunc) {
+func (c *ApiContext) CheckAuth(w web.ResponseWriter, r *web.Request,
+	next web.NextMiddlewareFunc) {
 	auth := r.Header.Get("ApiKey")
 	if auth == "" {
 		pleaseAuth(w)
@@ -52,7 +55,8 @@ func (c *ApiContext) CheckAuth(w web.ResponseWriter, r *web.Request, next web.Ne
 }
 
 //Checking session token
-func (c *ApiContext) CheckSession(rw web.ResponseWriter, r *web.Request, next web.NextMiddlewareFunc) {
+func (c *ApiContext) CheckSession(rw web.ResponseWriter, r *web.Request,
+	next web.NextMiddlewareFunc) {
 	id := r.Header.Get("Device-Id")
 	if id == "" {
 		rw.WriteHeader(http.StatusBadRequest)
@@ -164,7 +168,8 @@ func (c *ApiContext) CreateDeviceWithId(rw web.ResponseWriter, req *web.Request)
 }
 
 //Registering and counting api requests
-func (c *ApiContext) CountRequest(rw web.ResponseWriter, r *web.Request, next web.NextMiddlewareFunc) {
+func (c *ApiContext) CountRequest(rw web.ResponseWriter, r *web.Request,
+	next web.NextMiddlewareFunc) {
 	id := r.Header.Get("Device-Id")
 	if id == "" {
 		rw.WriteHeader(http.StatusBadRequest)

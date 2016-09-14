@@ -22,8 +22,10 @@ type WebContext struct {
 }
 
 //Injecting databases to WebContext
-func InjectMiddlewareWeb(mc *MongoConnection, ic *InfluxConnection, auth *bool) func(*WebContext, web.ResponseWriter, *web.Request, web.NextMiddlewareFunc) {
-	return func(ctx *WebContext, w web.ResponseWriter, r *web.Request, next web.NextMiddlewareFunc) {
+func InjectMiddlewareWeb(mc *MongoConnection, ic *InfluxConnection,
+	auth *bool) func(*WebContext, web.ResponseWriter, *web.Request, web.NextMiddlewareFunc) {
+	return func(ctx *WebContext, w web.ResponseWriter, r *web.Request,
+		next web.NextMiddlewareFunc) {
 		ctx.mc = mc
 		ctx.ic = ic
 		ctx.authenticated = *auth
@@ -35,7 +37,8 @@ func (c *WebContext) TestRequest(rw web.ResponseWriter, req *web.Request) {
 	fmt.Fprint(rw, "Test")
 }
 
-func (c *WebContext) CheckSession(w web.ResponseWriter, r *web.Request, next web.NextMiddlewareFunc) {
+func (c *WebContext) CheckSession(w web.ResponseWriter, r *web.Request,
+	next web.NextMiddlewareFunc) {
 	if c.authenticated {
 		_, err := r.Cookie("session")
 		if err != nil {

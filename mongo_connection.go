@@ -75,7 +75,8 @@ func (mc *MongoConnection) getSession(deviceId string) (*DeviceSession, error) {
 	return &deviceSession, nil
 }
 
-func (mc *MongoConnection) setSession(deviceId string, token string) (*DeviceSession, error) {
+func (mc *MongoConnection) setSession(deviceId string,
+	token string) (*DeviceSession, error) {
 	sessionStore := mc.MongoDataBase.C("session")
 	deviceSession := DeviceSession{Token: token, DeviceId: deviceId}
 	err := sessionStore.Insert(deviceSession)
@@ -169,7 +170,8 @@ func (mc *MongoConnection) getSessionById(deviceId string) (*DeviceSession, erro
 	return &deviceSession, nil
 }
 
-func (mc *MongoConnection) getAllDevices(skip int, limit int, filter string, order int) (*[]Device, error) {
+func (mc *MongoConnection) getAllDevices(skip int, limit int, filter string,
+	order int) (*[]Device, error) {
 	defer func() {
 		if e := recover(); e != nil {
 			log.Printf("[%v] caught panic: %v", e)
@@ -181,7 +183,8 @@ func (mc *MongoConnection) getAllDevices(skip int, limit int, filter string, ord
 	}
 	deviceCollection := mc.MongoDataBase.C("device")
 	var results []Device
-	err := deviceCollection.Find(bson.M{}).Skip(skip).Limit(limit).Sort(filter).All(&results)
+	err := deviceCollection.Find(bson.M{}).Skip(skip).Limit(limit).
+		Sort(filter).All(&results)
 	if err != nil {
 		log.Printf("mongo err ", err.Error())
 		return nil, err
@@ -204,7 +207,8 @@ func (mc *MongoConnection) getDevicesCount() (int, error) {
 	return n, nil
 }
 
-func (mc *MongoConnection) CreateDevice(deviceId string, installDate time.Time) (*Device, error) {
+func (mc *MongoConnection) CreateDevice(deviceId string,
+	installDate time.Time) (*Device, error) {
 	defer func() {
 		if e := recover(); e != nil {
 			log.Printf("[%v] caught panic: %v", e)

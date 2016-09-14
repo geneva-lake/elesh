@@ -1,6 +1,8 @@
 package main
 
 import (
+	"crypto/sha256"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -15,8 +17,10 @@ type LoginContext struct {
 	mc *MongoConnection
 }
 
-func InjectMiddlewareLogin(mc *MongoConnection) func(*LoginContext, web.ResponseWriter, *web.Request, web.NextMiddlewareFunc) {
-	return func(ctx *LoginContext, w web.ResponseWriter, r *web.Request, next web.NextMiddlewareFunc) {
+func InjectMiddlewareLogin(mc *MongoConnection) func(*LoginContext,
+	web.ResponseWriter, *web.Request, web.NextMiddlewareFunc) {
+	return func(ctx *LoginContext, w web.ResponseWriter, r *web.Request,
+		next web.NextMiddlewareFunc) {
 		ctx.mc = mc
 		next(w, r)
 	}
